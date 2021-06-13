@@ -14,6 +14,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(255), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
+    pitches = db.relationship('Pitch', backref='user', lazy='dynamic')    
 
     def save(self):
         db.session.add(self)
@@ -33,3 +34,11 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f'User: {self.username}'
+
+
+class Pitch(db.Model):
+    __tablename__ = 'pitches'
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String(255),nullable = False)
+    post = db.Column(db.Text(), nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

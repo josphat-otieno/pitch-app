@@ -14,6 +14,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(255), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
+    bio = db.Column(db.String(255))
     pitches = db.relationship('Pitch', backref='user', lazy='dynamic')   
     comments = db.relationship('Comments', backref='user', lazy='dynamic') 
 
@@ -44,8 +45,8 @@ class Pitch(db.Model):
     post = db.Column(db.Text(), nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comments', backref='user', lazy='dynamic') 
-    time = db.Column(db.DateTime, default = datetime.utcnow)
-    categories = db.Column(db.String(255), index = True,nullable = False)
+    date_posted=db.Column(db.DateTime, default = datetime.utcnow)
+    category = db.Column(db.String(255), index = True,nullable = False)
 
     def save_pitch(self):
         db.session.add(self)
@@ -61,7 +62,7 @@ class Comments(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
     pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'),nullable = False)
 
-    def save_c(self):
+    def save_comments(self):
         db.session.add(self)
         db.session.commit()
 

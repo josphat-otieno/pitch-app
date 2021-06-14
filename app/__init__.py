@@ -23,7 +23,7 @@ def create_app(config_name):
     app.config.from_object(config_options[config_name])
     '''creating the app configuration'''
     
-    # initialising the extensions
+    # initialising the extensions 
     bootstrap.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)

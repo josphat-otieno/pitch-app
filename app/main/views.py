@@ -3,7 +3,7 @@ from . import main
 from .. import db
 from ..models import User, Pitch, Comments
 from flask_login import login_required, current_user 
-from .forms import PitchForm, CommentsForm
+from .forms import PitchForm, CommentsForm, UpdateProfile
 
 @main.route('/')
 def index():
@@ -45,7 +45,9 @@ def comment(pitch_id):
         user_id = current_user._get_current_object().id
         new_comment = Comments(comment = comment,user_id = user_id,pitch_id = pitch_id)
         new_comment.save_c()
+
         return redirect(url_for('.comment', pitch_id = pitch_id))
+    
     return render_template('comment.html', form =form, pitch = pitch,all_comments=all_comments)
 
 
@@ -53,9 +55,28 @@ def comment(pitch_id):
 def profile(name):
     user = User.query.filter_by(username = name).first()
     user_id = current_user._get_current_object().id
-    posts = Pitch.query.filter_by(user_id = user_id).all()
+    pitches = Pitch.query.filter_by(user_id = user_id).all()
     if user is None:
         abort(404)
 
   
-    return render_template("profile/profile.html", user = user,posts=posts)
+    return render_template("profile/profile.html", user = user,pitches= pitches)
+
+@main.route('/user/<name>/update',methods = ['GET','POST'])
+@login_required
+def update_profile(name):
+    user = User.query.filter_by(username =name).first()
+    if user is None:
+        abort(404)
+
+    form = UpdateProfile()
+
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('.profile',name=user.username))
+
+    return render_template('profile/update.html',form =form)

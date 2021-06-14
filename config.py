@@ -22,6 +22,7 @@ class ProdConfig(Config):
         Arg:
             Config: th parent configuration class with general configuration settings
     '''
+    pass
 
 class TestConfig(Config):
     '''

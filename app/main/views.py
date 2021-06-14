@@ -44,7 +44,7 @@ def comment(pitch_id):
         pitch_id = pitch_id
         user_id = current_user._get_current_object().id
         new_comment = Comments(comment = comment,user_id = user_id,pitch_id = pitch_id)
-        new_comment.save_c()
+        new_comment.save_comments()
 
         return redirect(url_for('.comment', pitch_id = pitch_id))
     
@@ -81,7 +81,7 @@ def update_profile(name):
 
     return render_template('profile/update.html',form =form)
 
-@main.route('/user/<uname>/update/pic',methods= ['POST'])
+@main.route('/user/<name>/update/pic',methods= ['POST'])
 @login_required
 def update_pic(name):
     user = User.query.filter_by(username = name).first()
@@ -90,4 +90,4 @@ def update_pic(name):
         path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
-    return redirect(url_for('main.profile',uname=name))
+    return redirect(url_for('main.profile',name=name))

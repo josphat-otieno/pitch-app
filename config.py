@@ -14,7 +14,7 @@ class Config:
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
 
 
-    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://jose:joseotis45@localhost/pitch'
+    # SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://jose:joseotis45@localhost/pitch'
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
 class ProdConfig(Config):
@@ -24,7 +24,7 @@ class ProdConfig(Config):
         Arg:
             Config: th parent configuration class with general configuration settings
     '''
-    pass
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://jose:joseotis45@localhost/pitch'
 
 class TestConfig(Config):
     '''
@@ -40,6 +40,8 @@ class DevConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://jose:joseotis45@localhost/pitch'
+
     DEBUG = True
 
 config_options={

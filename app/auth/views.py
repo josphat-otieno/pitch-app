@@ -17,7 +17,7 @@ def login():
 
         flash('Invalid username or Password')
 
-    title = "watchlist login"
+    title = "Pitch application login"
     return render_template('auth/login.html',login_form = login_form,title=title)
 
 @auth.route('/register',methods = ["GET","POST"])
@@ -31,7 +31,7 @@ def register():
         mail_message("Welcome to the best pitches","email/welcome_user",user.email,user=user)
         
         return redirect(url_for('auth.login'))
-    title = "New Account"
+    title = "New Pitch Account"
     return render_template('auth/register.html',registration_form = form, title=title)
 
 

@@ -17,3 +17,10 @@ class CommentsForm(FlaskForm):
 class UpdateProfile(FlaskForm):
     bio = TextAreaField("Tell us about yourslef.", validators=[Required()])  
     submit = SubmitField('Submit')
+
+class UpvoteForm(FlaskForm):
+	submit = SubmitField()
+
+
+class DownvoteForm(FlaskForm):
+	submit = SubmitField()

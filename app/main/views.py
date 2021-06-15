@@ -20,22 +20,6 @@ def index():
     title = "This is your chanche to change your life"
     return render_template('index.html', title=title, pitches = pitches, education = education, love = love, business = business, interview = interview, promotion = promotion)
 
-# @main.route('/create_new', methods = ['GET','POST'])
-# @login_required
-# def new_pitch():
-#     '''
-#     view page function to enable users create new pitches
-#     '''
-#     form = PitchForm()
-#     if form.validate_on_submit():
-#         title = form.title.data
-#         post = form.post.data
-#         category = form.category.data
-#         user_id = current_user
-#         new_pitch_object = Pitch(post=post,user_id=current_user._get_current_object().id,category=category,title=title)
-#         new_pitch_object.save_p()
-#         return redirect(url_for('main.index'))
-
 
 @main.route('/comment/<int:pitch_id>', methods = ['GET','POST'])
 @login_required

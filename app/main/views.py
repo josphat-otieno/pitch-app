@@ -20,23 +20,29 @@ def index():
     title = "This is your chanche to change your life"
     return render_template('index.html', title=title, pitches = pitches, education = education, love = love, business = business, interview = interview, promotion = promotion)
 
-@main.route('/create_new', methods = ['GET','POST'])
-@login_required
-def new_pitch():
-    form = PitchForm()
-    if form.validate_on_submit():
-        title = form.title.data
-        pitches = form.pitches.data
-        category = form.category.data
-        user_id = current_user
-        new_pitch_object = Pitch(pitches=pitches,user_id=current_user._get_current_object().id,category=category,title=title)
-        new_pitch_object.save_pitch()
-        return redirect(url_for('main.index'))
+# @main.route('/create_new', methods = ['GET','POST'])
+# @login_required
+# def new_pitch():
+#     '''
+#     view page function to enable users create new pitches
+#     '''
+#     form = PitchForm()
+#     if form.validate_on_submit():
+#         title = form.title.data
+#         post = form.post.data
+#         category = form.category.data
+#         user_id = current_user
+#         new_pitch_object = Pitch(post=post,user_id=current_user._get_current_object().id,category=category,title=title)
+#         new_pitch_object.save_p()
+#         return redirect(url_for('main.index'))
 
 
 @main.route('/comment/<int:pitch_id>', methods = ['GET','POST'])
 @login_required
 def comment(pitch_id):
+    '''
+    page function to enable users comment on a pitch
+    '''
     form = CommentsForm()
     pitch = Pitch.query.get(pitch_id)
     all_comments = Comments.query.filter_by(pitch_id = pitch_id).all()
@@ -50,6 +56,22 @@ def comment(pitch_id):
         return redirect(url_for('.comment', pitch_id = pitch_id))
     
     return render_template('comment.html', form =form, pitch = pitch,all_comments=all_comments)
+
+
+@main.route('/new_pitch', methods = ['POST','GET'])
+@login_required
+def new_pitch():
+    form = PitchForm()
+    if form.validate_on_submit():
+        title = form.title.data
+        post_pitch = form.post_pitch.data
+        category = form.category.data
+        user_id = current_user
+        new_pitch_object = Pitch(post_pitch=post_pitch,user_id=current_user._get_current_object().id,category=category,title=title)
+        new_pitch_object.save_pitch()
+        return redirect(url_for('main.index'))
+        
+    return render_template('new_pitch.html', form = form)
 
 
 @main.route('/user/<name>')

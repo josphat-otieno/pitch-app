@@ -19,8 +19,8 @@ class User(UserMixin, db.Model):
     pitch = db.relationship('Pitch', backref='user', lazy='dynamic')   
     profile_pic_path = db.Column(db.String())
     comments = db.relationship('Comments', backref='user', lazy='dynamic') 
-    upvote = db.relationship('Upvote', backref='user', lazy='dynamic')
-    downvote = db.relationship('Downvote', backref='user',lazy='dynamic')
+    # upvote = db.relationship('Upvote', backref='user', lazy='dynamic')
+    # downvote = db.relationship('Downvote', backref='user',lazy='dynamic')
 
 
     @property
@@ -53,7 +53,7 @@ class Pitch(db.Model):
     __tablename__ = 'pitches'
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(255))
-    post_pitch = db.Column(db.Text())
+    descrption = db.Column(db.Text())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     date_posted=db.Column(db.DateTime, default = datetime.utcnow)
     category = db.Column(db.String(255), index = True,nullable = False)
@@ -109,20 +109,24 @@ class Upvote(db.Model):
 
 
     @classmethod
-    def add_upvotes(cls, id):
-        pitch_upvote = Upvote(user = current_user, pitch_id=id)
+    def add_upvotes(cls, pitch_id):
+        pitch_upvote = Upvote(user = current_user, pitch_id=pitch_id)
         pitch_upvote.save_upvotes()
 
 
     @classmethod
-    def get_upvotes(cls,id):
-        upvote = Upvote.query.filter_by(pitch_id=id).all()
+    def get_upvotes(cls,pitch_id):
+        upvote = Upvote.query.filter_by(pitch_id=pitch_id).all()
         return upvote
 
     @classmethod
     def get_all_upvotes(cls,pitch_id):
         upvotes = Upvote.query.order_by(pitch_id).all()
         return upvotes
+
+    
+    def __repr__(self):
+        return f'{self.user_id}:{self.pitch_id}'
 
  
 
@@ -145,11 +149,15 @@ class Downvote(db.Model):
 
     
     @classmethod
-    def get_downvotes(cls,id):
-        downvote = Downvote.query.filter_by(pitch_id=id).all()
+    def get_downvotes(cls,pitch_id):
+        downvote = Downvote.query.filter_by(pitch_id=pitch_id).all()
         return downvote
 
     @classmethod
     def get_all_downvotes(cls,pitch_id):
         downvote = Downvote.query.order_by(pitch_id).all()
         return downvote
+
+    
+    def __repr__(self):
+        return f'{self.user_id}:{self.pitch_id}' 

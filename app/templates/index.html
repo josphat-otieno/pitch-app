@@ -1,24 +1,44 @@
 
-{% extends 'base.html'%}
+{% extends 'bootstrap/base.html' %}
 {% import 'macros.html' as macro %}
 
-{% block content %}
-            <h1>{{header}}</h1>
-            <div class="tab-content">
-                <div  class="container tab-pane active" id="all"><br>
-                    {{ macro.display(pitches) }}
-                </div>
-                <div  class="container tab-pane fade" id="love"><br>
-                    {{ macro.display(love)}}
-                </div>
-                <div  class="container tab-pane fade" id="business"><br>
-                    {{ macro.display(business) }}
-                </div>
-                <div  class="container tab-pane fade" id="interview"><br>
-                    {{ macro.display(interview) }}
-                </div>
-                <div  class="container tab-pane fade" id="promotion"><br>
-                    {{ macro.display(promotion) }} 
-                </div>
-            </div>
-{% endblock%}
+
+    <div class="container">
+      <!-- <h3 style="color: green;text-align: center">Pitch Categories</h3>
+      <br>
+      <ul class="nav nav-pills nav-justified nav-fill" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#product">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#interview">Interview</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#pickupline">Pickupline</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#promotion">Promotion</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="product" class="container tab-pane active"><br> -->
+            {{header}}
+          {{ macro.display(love) }}
+          
+        </div>
+        <div id="interview" class="container tab-pane fade"><br>
+          {{ macro.display(business) }}
+        </div>
+        <div id="pickupline" class="container tab-pane fade"><br>
+          {{ macro.display(interview)}}
+        </div>
+        <div id="promotion" class="container tab-pane fade"><br>
+          {{ macro.display(promotion) }}
+        </div>
+        <div id="promotion" class="container tab-pane fade"><br>
+            {{ macro.display(education) }}
+          </div>
+        
+      </div>
+    </div>

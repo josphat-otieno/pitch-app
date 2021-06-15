@@ -20,10 +20,10 @@ These are the behaviours/features that the application implements for use by a u
 | Behaviour | Input | Output |
 | :---------------- | :---------------: | ------------------: |
 | User signs in or creates a new account | **On page load** | user sees various categories for the pitches and the pitches posted |
-| User clicks on a category | **On Tab link click** | Various pitches of that category are displayed |
-| user clicks on upvote or downvote | **Click a news source** | values for upvote and downvote increase and decrease by one respectively |
+| User clicks on a category | **On  click** | Various pitches of that category are displayed |
+| user clicks on upvote or downvote | **Click** | values for upvote and downvote increase and decrease by one respectively |
 | user clicks on comment | **On page load** | comment page is loaded where users can write and post thier comments |
-| user clicks on profle  | **Click an article** | profile page is loaded and users can can upload profle photos, update their bio and see various pitches they posted |
+| user clicks on profle  | **Click on profile** | profile page is loaded and users can can upload profle photos, update their bio and see various pitches they posted |
 
 ## Prerequisites
 * Python3.8

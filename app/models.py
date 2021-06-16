@@ -52,6 +52,7 @@ class User(UserMixin, db.Model):
 class Pitch(db.Model):
     __tablename__ = 'pitches'
     id = db.Column(db.Integer, primary_key = True)
+    pitch_id = db.Column(db.Integer)
     title = db.Column(db.String(255))
     descrption = db.Column(db.Text())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -61,9 +62,16 @@ class Pitch(db.Model):
     upvote = db.relationship('Upvote', backref='pitch', lazy='dynamic')
     downvote = db.relationship('Downvote', backref='pitch',lazy='dynamic')
 
+
     @classmethod
-    def get_pitches(cls, id):
-        pitches = Pitch.query.order_by(pitch_id=id).all()
+    def get_pitch_d(cls,id):
+        pitch = Pitch.query.filter_by(id=id).first()
+        return pitch
+
+
+    @classmethod
+    def get_pitches(cls, category):
+        pitches = Pitch.query.filter_by(category=category).all()
         return pitches
         
 
@@ -94,6 +102,23 @@ class Comments(db.Model):
     
     def __repr__(self):
         return f'comment:{self.comment}'
+
+
+class PitchCategory(db.Model):
+
+    __tablename__ = 'categories'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    description = db.Column(db.String(255))
+
+    def save_category(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_categories(cls):
+        categories = PitchCategory.query.all()
+        return categories
 
 
 class Upvote(db.Model):

@@ -2,43 +2,31 @@
 {% extends 'bootstrap/base.html' %}
 {% import 'macros.html' as macro %}
 
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap" rel="stylesheet">
+{% endblock %}
 
+{% block content %}
     <div class="container">
-      <!-- <h3 style="color: green;text-align: center">Pitch Categories</h3>
-      <br>
-      <ul class="nav nav-pills nav-justified nav-fill" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#product">Product</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#interview">Interview</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#pickupline">Pickupline</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#promotion">Promotion</a>
-        </li>
-      </ul>
+            <h1>{{header}}</h1>
 
-      <div class="tab-content">
-        <div id="product" class="container tab-pane active"><br> -->
-            {{header}}
-          {{ macro.display(love) }}
-          
-        </div>
-        <div id="interview" class="container tab-pane fade"><br>
+          <div id="interview" class="container tab-pane fade" style="font-family: Vioda Libre;"><br>
+            {{ macro.display(love) }}
+          </div>
+        <div id="interview" class="container tab-pane fade" style="font-family: Vioda Libre;"><br>
           {{ macro.display(business) }}
         </div>
-        <div id="pickupline" class="container tab-pane fade"><br>
+        <div id="pickupline" class="container tab-pane fade" style="font-family: Vioda Libre;" ><br>
           {{ macro.display(interview)}}
         </div>
-        <div id="promotion" class="container tab-pane fade"><br>
+        <div id="promotion" class="container tab-pane fade" style="font-family: Vioda Libre;" ><br>
           {{ macro.display(promotion) }}
         </div>
-        <div id="promotion" class="container tab-pane fade"><br>
+        <div id="promotion" class="container tab-pane fade" style="font-family: Vioda Libre;" ><br>
             {{ macro.display(education) }}
           </div>
-        
       </div>
-    </div>
+{% endblock %}

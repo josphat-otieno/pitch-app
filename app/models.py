@@ -16,7 +16,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(255), nullable=False, unique=True)
     password_secure = db.Column(db.String(255))
     bio = db.Column(db.String(255))
-    pitch = db.relationship('Pitch', backref='user', lazy='dynamic')   
+    pitches = db.relationship('Pitch', backref='user', lazy='dynamic')   
     profile_pic_path = db.Column(db.String())
     comments = db.relationship('Comments', backref='user', lazy='dynamic') 
     # upvote = db.relationship('Upvote', backref='user', lazy='dynamic')
@@ -52,9 +52,8 @@ class User(UserMixin, db.Model):
 class Pitch(db.Model):
     __tablename__ = 'pitches'
     id = db.Column(db.Integer, primary_key = True)
-    pitch_id = db.Column(db.Integer)
     title = db.Column(db.String(255))
-    descrption = db.Column(db.Text())
+    description = db.Column(db.Text())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     date_posted=db.Column(db.DateTime, default = datetime.utcnow)
     category = db.Column(db.String(255), index = True,nullable = False)

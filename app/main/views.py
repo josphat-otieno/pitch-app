@@ -31,9 +31,9 @@ def new_comment(pitch_id):
     form = CommentsForm() 
     pitch=Pitch.query.get(pitch_id)
     if form.validate_on_submit():
-        description = form.description.data
+        comment = form.comment.data
 
-        new_comment =Comments(description = description, user_id = current_user._get_current_object().id, pitch_id = pitch_id)
+        new_comment =Comments(comment=comment, user_id = current_user._get_current_object().id, pitch_id = pitch_id)
         db.session.add(new_comment)
         db.session.commit()
 
@@ -53,8 +53,8 @@ def new_pitch():
         category = form.category.data
         description=form.description.data
         user_id = current_user._get_current_object().id
-        new_pitch_object = Pitch(user_id =user_id,category=category,title=title, description=description)
-        new_pitch_object.save_pitch()
+        new_pitch= Pitch(user_id =user_id,category=category,title=title, description=description)
+        new_pitch.save_pitch()
 
         db.session.add(new_pitch)
         db.session.commit()

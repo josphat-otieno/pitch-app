@@ -5,7 +5,7 @@ from ..models import User, Pitch, Comments, PitchCategory
 from flask_login import login_required, current_user 
 from .forms import PitchForm, CommentsForm, UpdateProfile
 
-@main.route('/')
+@main.route('/', methods= ['GET','POST'])
 @login_required
 def index():
     '''
@@ -24,51 +24,27 @@ def index():
    
     return render_template('index.html', title=title,pitches = pitches, education = education, love = love, business = business, interview = interview, promotion = promotion, all_category=all_category, all_pitches=all_pitches)
 
+
 @main.route('/comment/new/<int:pitch_id>', methods = ['GET','POST'])
 @login_required
-def comment(pitch_id):
-    '''
-    page function to enable users comment on a pitch
-    '''
-    form = CommentsForm()
-    pitch = Pitch.query.get(pitch_id)
-    all_comments = Comments.query.filter_by(pitch_id = pitch_id).all()
+def new_comment(pitch_id):
+    form = CommentsForm() 
+    pitch=Pitch.query.get(pitch_id)
     if form.validate_on_submit():
-        comment = form.comment.data 
-        user_id = current_user._get_current_object().id
-        new_comment = Comments(comment = comment,user_id = user_id,pitch_id = pitch_id)
-        new_comment.save_comments()
+        description = form.description.data
 
+        new_comment =Comments(description = description, user_id = current_user._get_current_object().id, pitch_id = pitch_id)
         db.session.add(new_comment)
         db.session.commit()
 
 
-        return redirect(url_for('.comment', pitch_id = pitch_id))
-    
-    return render_template('comment.html', form =form, pitch = pitch,all_comments=all_comments)
+        return redirect(url_for('.new_comment', pitch_id= pitch_id))
+
+    all_comments = Comments.query.filter_by(pitch_id = pitch_id).all()
+    return render_template('comment.html', form = form, comment = all_comments, pitch = pitch ) 
 
 
-@main.route('/write_comment/<int:id>', methods=['GET', 'POST'])
-@login_required
-def post_comment(id):
-
-    form = CommentsForm()
-    title = 'Leave a Comment'
-    pitches = Pitch.query.filter_by(id=id).first()
-
-    if pitches is None:
-         abort(404)
-
-    if form.validate_on_submit():
-        comment = form.comment.data
-        new_comment = Comments(comment = comment, user_id = current_user.id, pitches_id = pitches.id)
-        new_comment.save_comments()
-        return redirect(url_for('.new_comment', id = pitches.id))
-
-    return render_template('post_comment.html', form= form, title = title)
-
-
-@main.route('/new_pitch/new', methods = ['POST','GET'])
+@main.route('/pitches/new', methods = ['POST','GET'])
 @login_required
 def new_pitch():
     form = PitchForm()
@@ -156,7 +132,7 @@ def displayPromotionCategory():
 @main.route('/category/education',methods= ['POST','GET'])
 def displayEducationCategory():
     educatiion = Pitch.get_pitches('education')
-    return render_template('pickup.html',educatiion =educatiion)
+    return render_template('education.html',educatiion =educatiion)
 
 @main.route('/category/interview',methods= ['POST','GET'])
 def displayInterviewCategory():

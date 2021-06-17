@@ -64,12 +64,6 @@ class Pitch(db.Model):
 
 
     @classmethod
-    def get_pitch_d(cls,id):
-        pitch = Pitch.query.filter_by(id=id).first()
-        return pitch
-
-
-    @classmethod
     def get_pitches(cls, category):
         pitches = Pitch.query.filter_by(category=category).all()
         return pitches
@@ -182,7 +176,6 @@ class Downvote(db.Model):
     def get_all_downvotes(cls,pitch_id):
         downvote = Downvote.query.order_by(pitch_id).all()
         return downvote
-
-    
+        
     def __repr__(self):
         return f'{self.user_id}:{self.pitch_id}' 

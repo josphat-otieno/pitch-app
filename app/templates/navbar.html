@@ -1,43 +1,39 @@
+<div class="navbar navbar-dark bg-primary" role="navigation">
+  <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <ul>
+          <a style="text-align: center; color: whitesmoke;" class="navbar-brand" href="/pitches/new/"> Post a Pitch </a>
+          </ul>
+      </div>
+      <div class="navbar-nav">
+          <a style="text-align: center; color: whitesmoke;" class="navbar-brand" href="/"> Home </a>
 
-<div class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <h1>{{title}}</h1>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-            </button>  
-            <a class="navbar-brand" href="/">Pitches</a> 
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li> <a href="/">All Pitches</a> </li>
-            </ul>
-        </div>
-    </div>
-    <div class="nav navbar-nav navbar-center">
-        <ul class="nav nav-pills nav-justified nav-fill" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link" id ="cats" data-toggle="tab" href="#love">Love Pitches</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id ="cats" data-toggle="tab" href="#business">Business Pitches</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id ="cats"data-toggle="tab" href="#interview">Interview Pitches</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id ="cats"data-toggle="tab" href="#promotion">Promotion Pitches</a>
-              </li>
-         </ul> <li class="nav-item">
-            <a class="nav-link" id ="cats"data-toggle="tab" href="#education">Education Pitches</a>
-          </li>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
+      </div>
+
+      <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated %}
         <li><a href="{{url_for('main.profile',name=current_user.username)}}">Profile</a></li>
-        <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+        <li style="color:whitesmoke">{{current_user.username}}</li>
+        <li><a style="color: whitesmoke;"  href="{{url_for('auth.logout')}}">Sign out</a></li>
         {% else %}
-        <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+        <li><a style="color: whitesmoke;" href="{{url_for('auth.login')}}">Sign in</a></li>
         {%endif%}
-    </ul>
+      </ul>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li style="color:whitesmoke"></li>
+          <li><a style="color: whitesmoke;"  href="{{url_for('auth.logout')}}"></a></li>
+          <li><a style="color: whitesmoke;" href="{{url_for('auth.login')}}"></a></li>
+        </ul>
+      </div>
+    
+</div>
 </div>

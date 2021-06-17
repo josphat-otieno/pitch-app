@@ -20,9 +20,9 @@ def index():
 
     all_category = PitchCategory.get_categories()
     all_pitches = Pitch.query.order_by('id').all()
-    header = "This is your chanche to change your life"
+    title = "This is your chanche to change your life"
    
-    return render_template('index.html', header=header, pitches = pitches, education = education, love = love, business = business, interview = interview, promotion = promotion, all_category=all_category, all_pitches=all_pitches)
+    return render_template('index.html', title=title,pitches = pitches, education = education, love = love, business = business, interview = interview, promotion = promotion, all_category=all_category, all_pitches=all_pitches)
 
 @main.route('/comment/new/<int:pitch_id>', methods = ['GET','POST'])
 @login_required
@@ -62,8 +62,8 @@ def post_comment(id):
     if form.validate_on_submit():
         comment = form.comment.data
         new_comment = Comments(comment = comment, user_id = current_user.id, pitches_id = pitches.id)
-        new_comment.save_comment()
-        return redirect(url_for('.view_pitch', id = pitches.id))
+        new_comment.save_comments()
+        return redirect(url_for('.new_comment', id = pitches.id))
 
     return render_template('post_comment.html', form= form, title = title)
 
@@ -75,8 +75,9 @@ def new_pitch():
     if form.validate_on_submit():
         title = form.title.data
         category = form.category.data
+        description=form.description.data
         user_id = current_user._get_current_object().id
-        new_pitch_object = Pitch(user_id =user_id,category=category,title=title)
+        new_pitch_object = Pitch(user_id =user_id,category=category,title=title, description=description)
         new_pitch_object.save_pitch()
 
         db.session.add(new_pitch)

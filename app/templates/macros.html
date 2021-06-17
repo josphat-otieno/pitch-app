@@ -10,7 +10,7 @@
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
                     <h2>{{category.description}}</h2>
-                    <footer class="blockquote-footer"> Posted by {{category.user.username}}</footer>
+                    <footer class="blockquote-footer"> Posted by {{category.user_id.username}}</footer>
                 </blockquote>
 
                 <a href="{{url_for('main.new_comment',pitch_id = category.id)}}" class="btn btn-info"> Add a comment</a>
@@ -28,7 +28,6 @@
 {% endmacro %}
 {% macro displayComment(comments) %}
 <ul>
-
     {% if comments %}
     {% for comment in comments %}
     <div class="row text-center">
@@ -44,8 +43,4 @@
     {%endif%}
 
 </ul>
-
-
-
-
 {% endmacro %}

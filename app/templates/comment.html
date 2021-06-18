@@ -2,11 +2,20 @@
 {% extends 'bootstrap/base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 {% import 'macros.html' as macro %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{%endblock%}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+{% block content%}
 <div class="row">
-    <div class="card">
-        <div class="card-body text-center"> 
+    <div class="card" style="font-family: Pangolin;">
+        <div class="card-header text-center"> 
             <h4><a>{{pitch.title}}</a></h4>
-            <h5 class="card-text text-center">{{pitch.comment}}.</h5>
+            <div class="card-body">
+                <h5 class="card-text text-center">{{pitch.comment}}.</h5>
+            </div>
         </div>
     </div>
     <div class="container">
@@ -17,9 +26,9 @@
         </div>
     </div>
     <hr>
-    <div class="container">
+    <div class="jumbotron">
         <div class="col-md-12">
-            <h4 style="color: brown; text-align: center;text-underline-position: below">Comments</h4>
+            <h4 style="color:  lime; text-align: center;text-underline-position: below; font-size: large;font-family: Pangolin;"></h4>
             {{ macro.displayComment(comment) }}
         </div>
     </div>

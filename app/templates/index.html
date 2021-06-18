@@ -4,42 +4,17 @@
 {% include 'navbar.html'%}
 {%endblock%}
 {%block content%}
-  <div class="container">
-    <h3 style="color: green;text-align: center">Pitch Categories</h3>
+  <div class="container" style="margin-right: 75px; margin-top: 2px;" >
+    <h3 style="color: green;text-align: center">{{title}} <br>
+      <a style="text-align: center; color: blue;" class="navbar-brand" href="/pitches/new"> Add Pitch </a>
+    </h3>
     <br>
-    <!-- <ul class="nav nav-pills nav-justified nav-fill" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#love">Love</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#education">Education</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#business">Business</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#interview">Interview</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#promotion">Promotion</a>
-      </li>
-    </ul> -->
-
     <div class="tab-content">
       <div class="container tab-pane active"><br>
         {{ macro.display(love)}}
-        
-      </div>
-      <div class="container tab-pane fade"><br>
         {{ macro.display(education) }}
-      </div>
-      <div class="container tab-pane fade"><br>
         {{ macro.display(business)}}
-      </div>
-      <div class="container tab-pane fade"><br>
         {{ macro.display(promotion) }}
-      </div>
-      <div class="container tab-pane fade"><br>
         {{ macro.display(interview) }}
       </div>
     </div>

@@ -31,8 +31,12 @@ These are the behaviours/features that the application implements for use by a u
 ## Setup/Installation Requirements
 * Clone [this repository]( https://github.com/josphat-otieno/pitch-app.git)  using the following commamnd  in the terminal: `git clone  https://github.com/josphat-otieno/pitch-app.git`. 
 * Note:<em>You will need to git installed in your machine. You can install using the following comman: `$ sudo apt-get install git.`</em>
-* After cloning, navigate to the folder where the repo was cloned and open it with your favorite code editor and run the `manage.py` file to interact with the application using the following command `$python3.8 manage.py`
+* After cloning, navigate to the folder where the repo was cloned and open it with your favorite code editor. 
+* Create a vitual environment using the following command `python3 -m venv --without-pip virtual`
+* Activate the virtual environment using the following command `source virtual/bin/activate`
+* Run thefollowing command  to interact with the application `$python3.8 manage.py server`
 * Run tests units using the following command `$python3.8 manage.py test`
+
 ## Known Bugs
 
 No known bugs

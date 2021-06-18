@@ -1,6 +1,6 @@
 import unittest
 
-from app.models import User, Comments, Pitch
+from app.models import Upvote, User, Comments, Pitch, Downvote
 
 class UserModelTest(unittest.TestCase):
     '''

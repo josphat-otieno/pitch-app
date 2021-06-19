@@ -1,4 +1,4 @@
-<div class="container-fluid" style="background-color: cadetblue; font-style: normal;font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: large;margin-right: 50px;">
+<div class="container-fluid" style="background-color: gray; font-style: normal;font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: large;margin-right: 60px;">
   <div class="navbar navbar-dark " role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -10,41 +10,41 @@
       </div>
       <div class="navbar-nav">
         <div class="text text-primary">
-          <a style="text-align: center; color: blue;" class="navbar-brand" href="/"> Home </a>
+          <a style="text-align: center; color:green;  font-size: larger; font-weight: bold;" class="navbar-brand" href="/"> Home </a>
          
           <ul class="nav nav-pills nav-justified nav-fill" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" style="color: blue;" href="#love">Love</a>
+              <a class="nav-link active" data-toggle="tab" style="color: green; font-size: larger; font-weight: bold;" href="#love">Love</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" style="color: blue;" href="#education">Education</a>
+              <a class="nav-link active" data-toggle="tab" style="color: green; font-size: larger; font-weight: bold;" href="#education">Education</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" style="color: blue;" href="#business">Business</a>
+              <a class="nav-link" data-toggle="tab" style="color: green; font-size: larger; font-weight: bold;" href="#business">Business</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" style="color: blue;" href="#interview">Interview</a>
+              <a class="nav-link" data-toggle="tab" style="color: green; font-size: larger; font-weight: bold;" href="#interview">Interview</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" style="color: blue;" href="#promotion">Promotion</a>
+              <a class="nav-link" data-toggle="tab" style="color: green; font-size: larger; font-weight: bold;" href="#promotion">Promotion</a>
             </li>
           </ul>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right" style="margin-right: 70px;">
             {% if current_user.is_authenticated %}
-            <li><a href="{{url_for('main.profile',name=current_user.username)}}">Profile</a></li>
-            <li style="color: red">{{current_user.username}}</li>
-            <li><a style="color: blue;" href="{{url_for('auth.logout')}}">Sign out</a></li>
+            <li><a href="{{url_for('main.profile',name=current_user.username)}}" style="color: mintcream"> Profile</a></li>
+            <li style="color: mintcream">{{current_user.username}}</li>
+            <li><a style="color: green; font-size: larger; font-weight: bold;" href="{{url_for('auth.logout')}}">Sign out</a></li>
             {% else %}
-            <li><a style="color: blue;" href="{{url_for('auth.login')}}">Sign in</a></li>
+            <li><a style="color: green; font-size: larger; font-weight: bold;" href="{{url_for('auth.login')}}">Sign in</a></li>
             {%endif%}
           </ul>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a style="color: blue;" href="{{url_for('auth.logout')}}"></a></li>
-            <li><a style="color: blue;" href="{{url_for('auth.login')}}"></a></li>
+            <li><a style="color: green;" href="{{url_for('auth.logout')}}"></a></li>
+            <li><a style="color: green;" href="{{url_for('auth.login')}}"></a></li>
           </ul>
         </div>
 

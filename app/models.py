@@ -73,7 +73,7 @@ class Pitch(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'Pitch{self.post_pitch}'
+        return f'Pitch{self.title}'
 
 class Comments(db.Model):
     __tablename__ = 'comments'
@@ -87,8 +87,8 @@ class Comments(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_comments(cls,pitch_id):
-        comments = Comments.query.filter_by(pitch_id=pitch_id).all()
+    def get_comments(cls,id):
+        comments = Comments.query.filter_by(pitch_id=id).all()
 
         return comments
 

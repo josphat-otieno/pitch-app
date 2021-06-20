@@ -1,3 +1,4 @@
+{% extends 'bootstrap/base.html' %}
 {% macro display(category_list) %}
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap" rel="stylesheet">
@@ -29,13 +30,19 @@
 {% endmacro %}
 {% macro displayComment(comments) %}
 <ul>
+	<h1>COMMENTS:</h1>
 	{% if comments %}
 	{% for comment in comments %}
 	<div class="row text-center">
-		<a>
-			<p style="color: brown">{{ comment.description }}</p>
-		</a>
-		<small> posted by {{comment.user.username}}</small>
+		<div class="card">
+			<div card-header>
+				<p>Posted by: {{comment.user.username}}</p>
+			</div>
+			<div class="card-body">
+				<p style="color: brown; ">{{ comment.comment }}</p>
+			</div>
+			<hr>
+		</div>
 	</div>
 	{% endfor %}
 	{% else %}

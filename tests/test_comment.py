@@ -13,9 +13,6 @@ class CommentsTest(unittest.TestCase):
         Comments.query.delete()
 
     def check_instance_variables(self): 
-        # self.assertEqual(self.new_pitch.title, 'jose')
-        # self.assertEqual(self.new_pitch.description, 'race with time')
-        # self.assertEqual(self.new_pitch.category, 'business')
         self.assertEqual(self.new_comment.comment, 'realy')
         # self.assertEqual(self.new_pitch.user, self.user_jose)
         self.assertEqual(self.new_comment.pitch_id, 1)

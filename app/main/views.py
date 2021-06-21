@@ -37,7 +37,7 @@ def new_comment(pitch_id):
         db.session.commit()
 
 
-        return redirect(url_for('.comment', pitch_id= pitch_id))
+        return redirect(url_for('.new_comment', pitch_id= pitch_id))
 
     all_comments = Comments.query.filter_by(pitch_id = pitch_id).all()
     return render_template('comment.html', comment_form = comment_form, comment = all_comments, pitch = pitch ) 
